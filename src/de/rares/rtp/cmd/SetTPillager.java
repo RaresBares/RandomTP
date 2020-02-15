@@ -14,10 +14,12 @@ public class SetTPillager implements CommandExecutor {
             if(p.hasPermission("tpillager.place")){
                 if(!TPillgerCompound.exists(p)){
                   new TPillgerCompound(p).setTpiloc(p.getLocation());
-                  p.sendMessage("bitte schreibe den Namen des Villagers");
+                  p.sendMessage("§a Bitte schreibe den Namen des Villagers in den Chat!");
                 }else {
-
+                    p.sendMessage("§c Du bist bereits in einer Erstellung verwickelt!");
                 }
+            }else{
+                p.sendMessage("§c Du hast dazu keine Rechte!");
             }
         }
         return true;

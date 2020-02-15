@@ -1,11 +1,15 @@
 package de.rares.rtp.tipillager;
 
+import net.minecraft.server.v1_8_R3.EntityLiving;
+import net.minecraft.server.v1_8_R3.NBTBase;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_8_R3.NBTTagString;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -17,17 +21,34 @@ public class TPillager   {
     Location tpilloc;
     String name;
     public Entity vil;
+    public int x;
+    public int y;
+    public int z;
+    public String world;
     public TPillager(Location spawnLoc, Location tpilloc, String name) {
         this.spawnLoc = spawnLoc;
         this.tpilloc = tpilloc;
         this.name = name;
+        tpilloc.setY(tpilloc.getBlockY());
+        tpilloc.setZ(tpilloc.getBlockZ());
+        tpilloc.setX(tpilloc.getBlockX());
         vil = tpilloc.getWorld().spawnEntity(tpilloc, EntityType.VILLAGER);
         tPillagers.add(this);
+        setup();
+    }
+
+    public static TPillager getByEntity(Entity e){
+        for (TPillager tPillager : tPillagers) {
+            if(tPillager.vil  == e){
+                return tPillager;
+            }
+        }
+        return null;
     }
 
     private void setup(){
 
-        vil.setCustomName(name);
+        vil.setCustomName(name.replace("&","§"));
         this.setNBTs();
 
     }
@@ -35,11 +56,16 @@ public class TPillager   {
         net.minecraft.server.v1_8_R3.Entity nmsEntity = ((CraftEntity) vil).getHandle();
         NBTTagCompound compound = new NBTTagCompound();
         nmsEntity.c(compound);
-        compound.setString("x", String.valueOf(spawnLoc.getBlockX()));
-        compound.setString("y", String.valueOf(spawnLoc.getBlockY()));
-        compound.setString("z", String.valueOf(spawnLoc.getBlockZ()));
-        compound.setString("world", spawnLoc.getWorld().getName());
+       x = spawnLoc.getBlockX() ;
+        y = spawnLoc.getBlockY() ;
+       z =  spawnLoc.getBlockZ() ;
+      world =   spawnLoc.getWorld().getName();
+
+        compound.setInt("Invulnerable",1 );
+        compound.setInt("NoAI",1 );
         nmsEntity.f(compound);
+
+
 
     }
 

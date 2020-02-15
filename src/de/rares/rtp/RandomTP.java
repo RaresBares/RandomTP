@@ -23,9 +23,9 @@ public class RandomTP extends JavaPlugin {
         System.out.println("Starting");
         Bukkit.getPluginManager().registerEvents(new TextListener(),this);
         Bukkit.getPluginManager().registerEvents(new TPListener(),this);
-
+        getCommand("setpillager").setExecutor(new SetTPillager());
         randomTP = this;
-        randomTP.getCommand("setpillager").setExecutor(new SetTPillager());
+
         fetchTPillager();
 
     }

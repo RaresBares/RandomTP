@@ -1,6 +1,7 @@
 package de.rares.rtp.listeners;
 
 import de.rares.rtp.listeners.exec.ProcessEHit;
+import de.rares.rtp.tipillager.TPillager;
 import net.minecraft.server.v1_8_R3.Entity;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
@@ -14,13 +15,14 @@ public class TPListener implements Listener {
 
 
     @EventHandler
-    public void onInteract(EntityInteractEvent e){
+    public void onInteract(PlayerInteractEntityEvent e){
 
-        Entity entity = ((CraftEntity) e.getEntity()).getHandle();
-        NBTTagCompound compound = new NBTTagCompound();
-        entity.c(compound);
-        if(compound.hasKey("tpworld") && compound.hasKey("x") && compound.hasKey("y") && compound.hasKey("z")) {
+
+        if(TPillager.getByEntity(e.getRightClicked()) != null) {
             new ProcessEHit(e);
+        }else {
+
+            System.out.println("er hat nicht die Werte");
         }
 
     }

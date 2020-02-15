@@ -106,14 +106,14 @@ public class TPillgerCompound {
     private void logInFile(TPillager tp){
         JSONObject jsonObject = new JSONObject();
         FileConfiguration cfg = RandomTP.randomTP.getConfig();
-        cfg.set(name + "." + "sx", tp.getSpawnLoc().getX());
-        cfg.set(name + "." + "sy", tp.getSpawnLoc().getY());
-        cfg.set(name + "." + "sz", tp.getSpawnLoc().getZ());
+        cfg.set(name + "." + "sx", tp.getSpawnLoc().getBlockX());
+        cfg.set(name + "." + "sy", tp.getSpawnLoc().getBlockY());
+        cfg.set(name + "." + "sz", tp.getSpawnLoc().getBlockZ());
         cfg.set(name + "." + "sw", tp.getSpawnLoc().getWorld().getName());
 
-        cfg.set(name + "." + "vx", tp.getTpilloc().getX());
-        cfg.set(name + "." + "vy", tp.getTpilloc().getY());
-        cfg.set(name + "." + "vz", tp.getTpilloc().getZ());
+        cfg.set(name + "." + "vx", tp.getTpilloc().getBlockX());
+        cfg.set(name + "." + "vy", tp.getTpilloc().getBlockY());
+        cfg.set(name + "." + "vz", tp.getTpilloc().getBlockZ());
         cfg.set(name + "." + "vw", tp.getTpilloc().getWorld().getName());
         RandomTP.randomTP.saveConfig();
     }

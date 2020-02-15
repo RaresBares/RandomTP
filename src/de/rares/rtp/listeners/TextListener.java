@@ -6,25 +6,28 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerChatEvent;
 
 public class TextListener implements Listener {
 
     @EventHandler
-    public void onText(AsyncPlayerChatEvent e) {
+    public void onText(PlayerChatEvent e) {
         Player p = e.getPlayer();
         if (TPillgerCompound.exists(p)) {
 
             TPillgerCompound tp = TPillgerCompound.getByPlayer(p);
 
             if (tp.getState() == TPillager_Set.SAYNAME) {
+                e.setCancelled(true);
                 tp.setName(e.getMessage());
                 tp.getByPlayer(p).setState(TPillager_Set.SET_LOCATION);
-                p.sendMessage("Bitte schreibe !location wenn du deinen SPawn hast");
+                p.sendMessage("§a Schreibe §2'!location'§a um den Mittelpunkt des SpawnUmkreises zu speichern");
             }else{
                 if(e.getMessage().equalsIgnoreCase("!location")){
+                    e.setCancelled(true);
                     tp.setSpawnloc(e.getPlayer().getLocation());
                     tp.end();
-                    System.out.println("Villager wird erstellt");
+                    System.out.println("§a Der TP-Villager wird erstellt!");
                 }
             }
 
