@@ -1,0 +1,9 @@
+main: de.rares.rtp.RandomTP
+name: RandomTP
+version: 1.0
+author: Rares
+
+commands:
+  setpillager:
+    usage: /setpillager
+    description: set a Random TP Pillager

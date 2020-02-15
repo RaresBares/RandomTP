@@ -1,5 +1,8 @@
 package de.rares.rtp;
 
+import de.rares.rtp.cmd.SetTPillager;
+import de.rares.rtp.listeners.TPListener;
+import de.rares.rtp.listeners.TextListener;
 import de.rares.rtp.tipillager.TPillager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -18,7 +21,11 @@ public class RandomTP extends JavaPlugin {
     @Override
     public void onEnable() {
         System.out.println("Starting");
+        Bukkit.getPluginManager().registerEvents(new TextListener(),this);
+        Bukkit.getPluginManager().registerEvents(new TPListener(),this);
+
         randomTP = this;
+        randomTP.getCommand("setpillager").setExecutor(new SetTPillager());
         fetchTPillager();
 
     }
