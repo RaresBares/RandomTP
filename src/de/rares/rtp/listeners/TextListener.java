@@ -21,13 +21,13 @@ public class TextListener implements Listener {
                 e.setCancelled(true);
                 tp.setName(e.getMessage());
                 tp.getByPlayer(p).setState(TPillager_Set.SET_LOCATION);
-                p.sendMessage("§a Schreibe §2'!location'§a um den Mittelpunkt des SpawnUmkreises zu speichern");
+                p.sendMessage("§2[2/3]§a Schreibe §2'!location'§a um den Mittelpunkt des SpawnUmkreises zu speichern");
             }else{
                 if(e.getMessage().equalsIgnoreCase("!location")){
                     e.setCancelled(true);
                     tp.setSpawnloc(e.getPlayer().getLocation());
                     tp.end();
-                    System.out.println("§a Der TP-Villager wird erstellt!");
+                    System.out.println("§2[3/3]§a Der TP-Villager wird erstellt!");
                 }
             }
 

@@ -22,7 +22,7 @@ public class TPListener implements Listener {
             new ProcessEHit(e);
         }else {
 
-            System.out.println("er hat nicht die Werte");
+
         }
 
     }

@@ -14,7 +14,7 @@ public class SetTPillager implements CommandExecutor {
             if(p.hasPermission("tpillager.place")){
                 if(!TPillgerCompound.exists(p)){
                   new TPillgerCompound(p).setTpiloc(p.getLocation());
-                  p.sendMessage("§a Bitte schreibe den Namen des Villagers in den Chat!");
+                  p.sendMessage("§2[1/3]§a Bitte schreibe den Namen des Villagers in den Chat!");
                 }else {
                     p.sendMessage("§c Du bist bereits in einer Erstellung verwickelt!");
                 }
